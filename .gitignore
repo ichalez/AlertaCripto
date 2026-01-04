@@ -1,0 +1,5 @@
+.DS_Store
+.vscode/
+.idea/
+*.log
+docker-compose.override.yml

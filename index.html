@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <base href="/AlertaCripto/">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Monitor de RSI en tiempo real para BTC, ETH, ADA y SOL con alertas visuales">
+    <title>AlertaCripto - RSI Monitor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1 class="main-title">AlertaCripto</h1>
+            <p class="subtitle">RSI 14 • Temporalidad 5m</p>
+        </header>
+
+        <div class="dashboard-grid">
+            <!-- Bitcoin Card -->
+            <div class="crypto-card" id="card-BTCUSDT">
+                <div class="card-header">
+                    <div class="coin-info">
+                        <span class="coin-symbol">BTC</span>
+                        <span class="coin-name">Bitcoin</span>
+                    </div>
+                    <div class="alert-indicator" id="alert-BTCUSDT"></div>
+                </div>
+                <div class="gauge-container">
+                    <svg class="gauge" viewBox="0 0 100 50">
+                        <path class="gauge-bg" d="M10 45 A 40 40 0 0 1 90 45" fill="none" />
+                        <path class="gauge-progress" id="progress-BTCUSDT" d="M10 45 A 40 40 0 0 1 90 45" fill="none" />
+                        <line class="threshold upper" x1="78" y1="18" x2="82" y2="14" />
+                        <line class="threshold lower" x1="18" y1="14" x2="22" y2="18" />
+                    </svg>
+                    <div class="rsi-value" id="rsi-BTCUSDT">--.-</div>
+                </div>
+                <div class="price-display" id="price-BTCUSDT">Connecting...</div>
+            </div>
+
+            <!-- Ethereum Card -->
+            <div class="crypto-card" id="card-ETHUSDT">
+                <div class="card-header">
+                    <div class="coin-info">
+                        <span class="coin-symbol">ETH</span>
+                        <span class="coin-name">Ethereum</span>
+                    </div>
+                    <div class="alert-indicator" id="alert-ETHUSDT"></div>
+                </div>
+                <div class="gauge-container">
+                    <svg class="gauge" viewBox="0 0 100 50">
+                        <path class="gauge-bg" d="M10 45 A 40 40 0 0 1 90 45" fill="none" />
+                        <path class="gauge-progress" id="progress-ETHUSDT" d="M10 45 A 40 40 0 0 1 90 45" fill="none" />
+                        <line class="threshold upper" x1="78" y1="18" x2="82" y2="14" />
+                        <line class="threshold lower" x1="18" y1="14" x2="22" y2="18" />
+                    </svg>
+                    <div class="rsi-value" id="rsi-ETHUSDT">--.-</div>
+                </div>
+                <div class="price-display" id="price-ETHUSDT">Connecting...</div>
+            </div>
+
+            <!-- Cardano Card -->
+            <div class="crypto-card" id="card-ADAUSDT">
+                <div class="card-header">
+                    <div class="coin-info">
+                        <span class="coin-symbol">ADA</span>
+                        <span class="coin-name">Cardano</span>
+                    </div>
+                    <div class="alert-indicator" id="alert-ADAUSDT"></div>
+                </div>
+                <div class="gauge-container">
+                    <svg class="gauge" viewBox="0 0 100 50">
+                        <path class="gauge-bg" d="M10 45 A 40 40 0 0 1 90 45" fill="none" />
+                        <path class="gauge-progress" id="progress-ADAUSDT" d="M10 45 A 40 40 0 0 1 90 45" fill="none" />
+                        <line class="threshold upper" x1="78" y1="18" x2="82" y2="14" />
+                        <line class="threshold lower" x1="18" y1="14" x2="22" y2="18" />
+                    </svg>
+                    <div class="rsi-value" id="rsi-ADAUSDT">--.-</div>
+                </div>
+                <div class="price-display" id="price-ADAUSDT">Connecting...</div>
+            </div>
+
+            <!-- Solana Card -->
+            <div class="crypto-card" id="card-SOLUSDT">
+                <div class="card-header">
+                    <div class="coin-info">
+                        <span class="coin-symbol">SOL</span>
+                        <span class="coin-name">Solana</span>
+                    </div>
+                    <div class="alert-indicator" id="alert-SOLUSDT"></div>
+                </div>
+                <div class="gauge-container">
+                    <svg class="gauge" viewBox="0 0 100 50">
+                        <path class="gauge-bg" d="M10 45 A 40 40 0 0 1 90 45" fill="none" />
+                        <path class="gauge-progress" id="progress-SOLUSDT" d="M10 45 A 40 40 0 0 1 90 45" fill="none" />
+                        <line class="threshold upper" x1="78" y1="18" x2="82" y2="14" />
+                        <line class="threshold lower" x1="18" y1="14" x2="22" y2="18" />
+                    </svg>
+                    <div class="rsi-value" id="rsi-SOLUSDT">--.-</div>
+                </div>
+                <div class="price-display" id="price-SOLUSDT">Connecting...</div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="legend">
+                <span class="legend-item"><span class="dot red"></span> Bajista (Sobrecarga > 70)</span>
+                <span class="legend-item"><span class="dot green"></span> Alcista (Sobrecarga < 30)</span>
+            </div>
+            <p class="footer-msg">Real-time data from Binance API</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
