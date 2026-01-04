@@ -7,7 +7,10 @@ const CONFIG = {
     binanceWs: 'wss://stream.binance.com:9443/ws'
 };
 
-const state = {};
+const state = {
+    activeSymbol: 'BTCUSDT',
+    tradingViewLoaded: false
+};
 
 /**
  * Initialize the state for each symbol
@@ -154,6 +157,53 @@ function updateUI(symbol, rsi, price) {
     else progress.style.stroke = 'var(--accent-blue)';
 }
 
+/**
+ * Initialize TradingView Widget
+ */
+function initTradingView(symbol) {
+    if (!window.TradingView) {
+        if (!state.tradingViewLoading) {
+            state.tradingViewLoading = true;
+            const script = document.createElement('script');
+            script.src = 'https://s3.tradingview.com/tv.js';
+            script.onload = () => {
+                state.tradingViewLoaded = true;
+                createWidget(symbol);
+            };
+            document.head.appendChild(script);
+        }
+        return;
+    }
+    createWidget(symbol);
+}
+
+function createWidget(symbol) {
+    new TradingView.widget({
+        "autosize": true,
+        "symbol": `BINANCE:${symbol}`,
+        "interval": "5",
+        "timezone": "Etc/UTC",
+        "theme": "dark",
+        "style": "1",
+        "locale": "es",
+        "toolbar_bg": "#f1f3f6",
+        "enable_publishing": false,
+        "hide_top_toolbar": false,
+        "save_image": false,
+        "container_id": "tradingview_chart"
+    });
+
+    // Update active UI state
+    CONFIG.symbols.forEach(s => {
+        const card = document.getElementById(`card-${s}`);
+        if (s === symbol) {
+            card.classList.add('active');
+        } else {
+            card.classList.remove('active');
+        }
+    });
+}
+
 async function start() {
     initState();
 
@@ -189,6 +239,18 @@ async function start() {
         console.log("WebSocket closed, reconnecting...");
         setTimeout(start, 5000);
     };
+
+    // Initialize Chart
+    initTradingView(state.activeSymbol);
+
+    // Add click listeners to cards
+    CONFIG.symbols.forEach(symbol => {
+        const card = document.getElementById(`card-${symbol}`);
+        card.addEventListener('click', () => {
+            state.activeSymbol = symbol;
+            initTradingView(symbol);
+        });
+    });
 }
 
 document.addEventListener('DOMContentLoaded', start);

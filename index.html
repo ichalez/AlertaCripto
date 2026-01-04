@@ -3,7 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <base href="/AlertaCripto/">
+    <script>
+        // Trailing slash redirect for stripping proxies (Traefik/Caddy)
+        if (window.location.pathname.length > 1 && !window.location.pathname.endsWith('/')) {
+            if (!window.location.pathname.split('/').pop().includes('.')) {
+                window.location.replace(window.location.href + '/');
+            }
+        }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Monitor de RSI en tiempo real para BTC, ETH, ADA y SOL con alertas visuales">
     <title>AlertaCripto - RSI Monitor</title>
@@ -104,17 +111,21 @@
                 </div>
                 <div class="price-display" id="price-SOLUSDT">Connecting...</div>
             </div>
-        </div>
+            <section class="chart-section">
+                <div id="tradingview_chart_container">
+                    <div id="tradingview_chart"></div>
+                </div>
+            </section>
 
-        <footer>
-            <div class="legend">
-                <span class="legend-item"><span class="dot red"></span> Bajista (Sobrecarga > 70)</span>
-                <span class="legend-item"><span class="dot green"></span> Alcista (Sobrecarga < 30)</span>
-            </div>
-            <p class="footer-msg">Real-time data from Binance API</p>
-        </footer>
-    </div>
-    <script src="script.js"></script>
+            <footer>
+                <div class="legend">
+                    <span class="legend-item"><span class="dot red"></span> Bajista (Sobrecarga > 70)</span>
+                    <span class="legend-item"><span class="dot green"></span> Alcista (Sobrecarga < 30)</span>
+                </div>
+                <p class="footer-msg">Real-time data from Binance API</p>
+            </footer>
+        </div>
+        <script src="script.js"></script>
 </body>
 
 </html>

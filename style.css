@@ -49,6 +49,7 @@ header {
     letter-spacing: -1px;
     background: linear-gradient(135deg, #fff 0%, #aaa 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 0.5rem;
 }
@@ -171,6 +172,37 @@ header {
     font-size: 0.9rem;
     color: var(--text-secondary);
     font-family: monospace;
+}
+
+/* Chart Section */
+.chart-section {
+    margin-top: 2rem;
+    width: 100%;
+}
+
+#tradingview_chart_container {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    height: 500px;
+    overflow: hidden;
+    position: relative;
+}
+
+#tradingview_chart {
+    height: 100%;
+    width: 100%;
+}
+
+.crypto-card {
+    cursor: pointer;
+}
+
+.crypto-card.active {
+    border-color: var(--accent-blue);
+    background: rgba(0, 210, 255, 0.05);
 }
 
 /* Legend */
